@@ -46,7 +46,7 @@ const Cover = ({ innerPage }) => {
   const handleClick = (url) => {
     router.push(url);
   }
-
+  const isStoreEnavled = process.env.NEXT_PUBLIC_ENABLE_STORE && process.env.NEXT_PUBLIC_ENABLE_STORE === 'true'
   return (
     <>
       <section className={classes.mainWrapper}>
@@ -58,8 +58,11 @@ const Cover = ({ innerPage }) => {
                   <div className={classes.textContainer}>
                     <h1>{item.title}</h1>
                     <p>{item.description}</p>
-                    {index === 0 ? <Reservation /> : null}
-                    {item.buttons[0]?.text && <CustomButton url={item.buttons[0]?.url} text={item.buttons[0]?.text} onClick={(e) => handleClick(item.buttons[0]?.url)} />}
+                    {index === 0 && !isStoreEnavled && <Reservation />}
+                    {index === 1 && isStoreEnavled ? <Reservation /> : null}
+                    {index === 0 && !isStoreEnavled && item.buttons[0]?.text === 'SHOP THE STORE' ? ''
+                    : item.buttons[0]?.text &&
+                    <CustomButton url={item.buttons[0]?.url} text={item.buttons[0]?.text} onClick={(e) => handleClick(item.buttons[0]?.url)} />}
                   </div>
                 </Container>
               </Grid>

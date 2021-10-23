@@ -42,9 +42,12 @@ const useStyles = makeStyles((theme) => ({
 const NavItems = ({ navBar, closeMenu }) => {
   const classes = useStyles();
   const router = useRouter();
+  const isStoreEnavled = process.env.NEXT_PUBLIC_ENABLE_STORE
+  
   return (
       <ul className={`${classes.menuWrapper} mainMenuWrapper`} edge="end">
         {navBar.map((menu, index) => {
+          if (isStoreEnavled === 'false' && menu.text === 'PRODUCTS') return null
           return (
             <li key={`${menu?.text}${index}`}>
               <Link href={menu?.url || ''} passHref>
