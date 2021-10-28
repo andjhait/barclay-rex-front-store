@@ -121,6 +121,7 @@ const Footer = ({ smallText, social, footerSection }) => {
               <p key={item.text} className={classes.mainLink}><Link href={item.url}>{item.text}</Link></p>    
             )
           })}
+          <p className={classes.mainLink}><Link href='terms-and-conditions'>TERMS & CONDITIONS</Link></p>    
         </div>
       </section>
     </Container>
